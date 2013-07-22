@@ -105,13 +105,16 @@ syn match scalaAnnotation "@[a-zA-Z]\+"
 syn match scalaEmptyString "\"\""
 
 " multi-line string literals
-syn region scalaMultiLineString start="\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode
+syn region scalaMultiLineString start="\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation
 syn match scalaUnicode "\\u[0-9a-fA-F]\{4}" contained
 
 " string literals with escapes
-syn region scalaString start="\"[^"]" skip="\\\"" end="\"" contains=scalaStringEscape " TODO end \n or not?
+syn region scalaString start="\"[^"]" skip="\\\"" end="\"" contains=scalaStringEscape,scalaInterpolation " TODO end \n or not?
 syn match scalaStringEscape "\\u[0-9a-fA-F]\{4}" contained
 syn match scalaStringEscape "\\[nrfvb\\\"]" contained
+
+" string interpolation
+syn region scalaInterpolation	      matchgroup=scalaInterpolationDelimiter start="${" end="}" contained contains=ALLBUT,scalaXmlEscape,scalaFqnSet
 
 " symbol and character literals
 syn match scalaSymbol "'[_a-zA-Z0-9][_a-zA-Z0-9]*\>"
