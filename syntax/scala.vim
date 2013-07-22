@@ -106,15 +106,17 @@ syn match scalaAnnotation "@[a-zA-Z]\+"
 syn match scalaEmptyString "\"\""
 
 " multi-line string literals
-syn region scalaMultiLineString start="\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation
+syn region scalaMultiLineString start="\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode
 syn match scalaUnicode "\\u[0-9a-fA-F]\{4}" contained
 
 " string literals with escapes
-syn region scalaString start="\"[^"]" skip="\\\"" end="\"" contains=scalaStringEscape,scalaInterpolation " TODO end \n or not?
+syn region scalaString start="\"[^"]" skip="\\\"" end="\"" contains=scalaStringEscape " TODO end \n or not?
 syn match scalaStringEscape "\\u[0-9a-fA-F]\{4}" contained
 syn match scalaStringEscape "\\[nrfvb\\\"]" contained
 
 " string interpolation
+syn region scalaInterpolatedString start="s\"[^"]" skip="\\\"" end="\"" contains=scalaStringEscape,scalaInterpolation " TODO end \n or not?
+syn region scalaInterpolatedMultiLineString start="s\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation
 syn region scalaInterpolation	      matchgroup=scalaInterpolationDelimiter start="${" end="}" contained contains=ALLBUT,scalaXmlEscape,scalaFqnSet
 
 " symbol and character literals
@@ -153,6 +155,8 @@ hi link scalaOperator Normal
 hi link scalaNumber Number
 hi link scalaEmptyString String
 hi link scalaString String
+hi link scalaInterpolatedString String
+hi link scalaInterpolatedMultiLineString String
 hi link scalaChar String
 hi link scalaMultiLineString String
 hi link scalaStringEscape Special
