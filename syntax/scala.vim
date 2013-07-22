@@ -67,6 +67,7 @@ syn keyword scalaVar var nextgroup=scalaVarName skipwhite
 syn keyword scalaClass class nextgroup=scalaClassName skipwhite
 syn keyword scalaObject object nextgroup=scalaClassName skipwhite
 syn keyword scalaTrait trait nextgroup=scalaClassName skipwhite
+syn match scalaBasicIdentifier "[_a-zA-Z][_a-zA-Z0-9]*" contained
 syn match scalaDefName "[^ =:;([]{}|\+" contained nextgroup=scalaDefSpecializer skipwhite
 syn match scalaValName "[^ =:;([]{}|\+" contained
 syn match scalaVarName "[^ =:;([]{}|\+" contained
@@ -115,8 +116,9 @@ syn match scalaStringEscape "\\u[0-9a-fA-F]\{4}" contained
 syn match scalaStringEscape "\\[nrfvb\\\"]" contained
 
 " string interpolation
-syn region scalaInterpolatedString start="s\"[^"]" skip="\\\"" end="\"" contains=scalaStringEscape,scalaInterpolation " TODO end \n or not?
-syn region scalaInterpolatedMultiLineString start="s\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation
+syn region scalaInterpolatedString start="s\"[^"]" skip="\\\"" end="\"" contains=scalaStringEscape,scalaInterpolation,scalaBasicInterpolation " TODO end \n or not?
+syn region scalaInterpolatedMultiLineString start="s\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation,scalaBasicInterpolation
+syn region scalaBasicInterpolation	      matchgroup=scalaBasicInterpolationDelimiter start="\$[_a-zA-Z]"ms=s-1 end="\>" contained contains=scalaBasicIdentifier oneline
 syn region scalaInterpolation	      matchgroup=scalaInterpolationDelimiter start="${" end="}" contained contains=ALLBUT,scalaXmlEscape,scalaFqnSet
 
 " symbol and character literals
