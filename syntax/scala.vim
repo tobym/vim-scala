@@ -125,7 +125,7 @@ syn match scalaDollarSignEscape "\$\$" contained
 syn region scalaInterpolatedString start="s\"[^"]" skip="\\\"" end="\"" contains=scalaNoStringEscape,scalaInterpolation,scalaBasicInterpolation,scalaDollarSignEscape " TODO end \n or not?
 syn region scalaInterpolatedMultiLineString start="s\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation,scalaBasicInterpolation,scalaDollarSignEscape
 syn region scalaBasicInterpolation	      matchgroup=scalaBasicInterpolationDelimiter start="\$[_a-zA-Z]"ms=s-1 end="\>" contained contains=scalaBasicIdentifier oneline
-syn region scalaInterpolation	      matchgroup=scalaInterpolationDelimiter start="${" end="}" contained contains=ALLBUT,scalaXmlEscape,scalaFqnSet
+syn region scalaInterpolation	      matchgroup=scalaInterpolationDelimiter start="${" end="}" contained contains=ALL
 
 " symbol and character literals
 syn match scalaSymbol "'[_a-zA-Z0-9][_a-zA-Z0-9]*\>"
