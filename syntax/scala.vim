@@ -47,6 +47,7 @@ syn keyword scalaKeywordModifier sealed
 syn match scalaKeyword "=>"
 syn match scalaKeyword "<-"
 syn match scalaKeyword "\<_\>"
+syn match Special "???"
 
 syn match scalaOperator ":\{2,\}" "this is not a type
 
