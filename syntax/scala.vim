@@ -90,6 +90,7 @@ syn match scalaCaseType "\(case\s\+[_a-zA-Z0-9]\+\)\@<=:\s*[\._$a-zA-Z0-9]\+\(\[
 
 " comments
 syn match scalaTodo "[tT][oO][dD][oO]" contained
+syn match scalaTodo "[fF][iI][xX][mM][eE]" contained
 syn match scalaLineComment "//.*" contains=scalaTodo
 syn region scalaComment start="/\*" end="\*/" contains=scalaTodo
 syn case ignore
