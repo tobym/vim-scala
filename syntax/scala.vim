@@ -118,9 +118,12 @@ syn match scalaStringEscape "\\[nrfvb\\\"]" contained
 " Interpolated strings do not support escaping quotes
 syn match scalaNoStringEscape "\\\"" contained
 
+" Interpolated strings escape $ with $, so $$ prints a single $
+syn match scalaDollarSignEscape "\$\$" contained
+
 " string interpolation
-syn region scalaInterpolatedString start="s\"[^"]" skip="\\\"" end="\"" contains=scalaNoStringEscape,scalaInterpolation,scalaBasicInterpolation " TODO end \n or not?
-syn region scalaInterpolatedMultiLineString start="s\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation,scalaBasicInterpolation
+syn region scalaInterpolatedString start="s\"[^"]" skip="\\\"" end="\"" contains=scalaNoStringEscape,scalaInterpolation,scalaBasicInterpolation,scalaDollarSignEscape " TODO end \n or not?
+syn region scalaInterpolatedMultiLineString start="s\"\"\"" end="\"\"\"\"\@!" contains=scalaUnicode,scalaInterpolation,scalaBasicInterpolation,scalaDollarSignEscape
 syn region scalaBasicInterpolation	      matchgroup=scalaBasicInterpolationDelimiter start="\$[_a-zA-Z]"ms=s-1 end="\>" contained contains=scalaBasicIdentifier oneline
 syn region scalaInterpolation	      matchgroup=scalaInterpolationDelimiter start="${" end="}" contained contains=ALLBUT,scalaXmlEscape,scalaFqnSet
 
@@ -166,6 +169,7 @@ hi link scalaChar String
 hi link scalaMultiLineString String
 hi link scalaStringEscape Special
 hi link scalaNoStringEscape Error
+hi link scalaDollarSignEscape Special
 hi link scalaSymbol Special
 hi link scalaUnicode Special
 hi link scalaComment Comment
